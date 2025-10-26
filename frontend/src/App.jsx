@@ -7,7 +7,7 @@ function App() {
   const fetchData = () => {
     {
       // C# API'mıza istek atıyoruz
-      fetch('http://localhost:5191/WeatherForecast')
+      fetch('https://c-api-react.onrender.com/WeatherForecast')
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -34,7 +34,7 @@ function App() {
     };
 
     // 2. fetch'i POST için ayarla
-    fetch('http://localhost:5191/WeatherForecast', { // Aynı adrese gidiyoruz
+    fetch('https://c-api-react.onrender.com/WeatherForecast', { // Aynı adrese gidiyoruz
       method: 'POST', // Ama metodu 'POST' olarak belirtiyoruz
       headers: {
         'Content-Type': 'application/json', // "Sana JSON yolluyorum" diyoruz
