@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
         {
             // Buraya React'in çalıştığı adresi yazıyoruz.
 
-            builder.WithOrigins("http://localhost:5173")
+            builder.WithOrigins("http://localhost:5173", "https://c-api-react-1.onrender.com")
                    .AllowAnyHeader()
                    .AllowAnyMethod();
         });
