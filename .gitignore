@@ -1,6 +1,6 @@
 # Gizli Geliştirme (Development) ayarlarını ASLA pushlama
 appsettings.Development.json
-
+appsettings.json
 # Derleme artıklarını ve yerel DB'yi de pushlama
 **/bin/
 **/obj/
