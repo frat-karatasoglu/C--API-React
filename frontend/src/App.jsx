@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 function App() {
   const [data, setData] = useState([]); // Gelen veriyi tutacak state
   const [error, setError] = useState(null); // Hata olursa tutacak state
-
+  // Kullanıcının "Özet" kutusuna yazdığını tutacak hafıza
+  const [summary, setSummary] = useState("");
+  // Kullanıcının "Sıcaklık" kutusuna yazdığını tutacak hafıza
+  const [temperature, setTemperature] = useState(0);
   const fetchData = () => {
     {
       // C# API'mıza istek atıyoruz
@@ -28,9 +31,9 @@ function App() {
   const handlePost = () => {
     // 1. C#'a göndereceğimiz veriyi hazırla.
     const newForecast = {
-      date: new Date().toISOString().split('T')[0], // "2025-10-24" formatı verir
-      temperatureC: Math.floor(Math.random() * 50) - 10, // -10 ile 40 arası rastgele
-      summary: "React'ten Geldi"
+      date: new Date().toISOString().split('T')[0],
+      temperatureC: temperature,
+      summary: summary
     };
 
     // 2. fetch'i POST için ayarla
@@ -38,6 +41,7 @@ function App() {
       method: 'POST', // Ama metodu 'POST' olarak belirtiyoruz
       headers: {
         'Content-Type': 'application/json', // "Sana JSON yolluyorum" diyoruz
+        'X-API-Key': import.meta.env.VITE_API_KEY
       },
       body: JSON.stringify(newForecast), // Hazırladığımız objeyi JSON metnine çevirip yolluyoruz
     })
@@ -73,6 +77,20 @@ function App() {
   // Veri başarıyla geldiyse, JSON'u ekrana bas
   return (
     <div>
+      <div>
+        <input
+          type="text"
+          placeholder="Özet (örn: Güneşli)"
+          value={summary}
+          onChange={e => setSummary(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Sıcaklık (°C)"
+          value={temperature}
+          onChange={e => setTemperature(parseInt(e.target.value) || 0)}
+        />
+      </div>
       {/* 1. Butonumuz: Tıklandığında 'handlePost'u çalıştıracak */}
       <button onClick={handlePost}>
         Sunucuya Yeni Veri Gönder (POST)
