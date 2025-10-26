@@ -1,0 +1,10 @@
+# Gizli Geliştirme (Development) ayarlarını ASLA pushlama
+appsettings.Development.json
+
+# Derleme artıklarını ve yerel DB'yi de pushlama
+**/bin/
+**/obj/
+weather.db
+
+# Node.js bağımlılıklarını pushlama
+**/node_modules/
